@@ -24,7 +24,7 @@ def response_generator(user_input, temperature):
         yield word + " "
         time.sleep(0.05)
 
-logo = Image.open("ZebraLLAMA_logo.png")
+logo = Image.open("ZebraLLAMA_logo.jpg")
 
 st.title("Chat EDS with Zebra Llama")
 
