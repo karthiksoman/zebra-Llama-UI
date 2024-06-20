@@ -40,6 +40,18 @@ with st.sidebar:
     st.write("")
     temperature = st.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
     st.caption("Sets response creativity: lower value for focused, higher value for diverse.")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.markdown("---")
+    st.markdown(
+        "<p style='font-size: small; color: gray;'>"
+        "<strong>Disclaimer:</strong> Zebra-LLAMA is an AI model "
+        "designed for academic research and educational purposes only. "
+        "It should not be used as a substitute for professional medical advice, diagnosis, or treatment."
+        "</p>", 
+        unsafe_allow_html=True
+    )
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
