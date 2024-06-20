@@ -25,10 +25,7 @@ def response_generator(user_input, temperature):
         time.sleep(0.05)
 
 logo = Image.open("ZebraLLAMA_logo.png")
-col1, col2, col3 = st.columns([1,2,1])
-with col2:
-    st.image(logo, width=200)
-    
+
 st.title("Chat EDS with Zebra Llama")
 
 # Initialize chat history
@@ -37,6 +34,8 @@ if "messages" not in st.session_state:
 
 # Add a sidebar for the temperature slider
 with st.sidebar:
+    st.image(logo, width=200)
+    st.write("")
     temperature = st.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
     st.caption("Sets response creativity: lower value for focused, higher value for diverse.")
 
