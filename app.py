@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import time
+from PIL import Image
 
 def get_response(user_input, temperature):
     url = "https://jfn1so7p7a.execute-api.us-west-1.amazonaws.com/Prod/inference"
@@ -23,6 +24,11 @@ def response_generator(user_input, temperature):
         yield word + " "
         time.sleep(0.05)
 
+logo = Image.open("ZebraLLAMA_logo.png")
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    st.image(logo, use_column_width=True)
+    
 st.title("Chat EDS with Zebra Llama")
 
 # Initialize chat history
