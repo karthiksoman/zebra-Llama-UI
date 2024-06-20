@@ -18,6 +18,7 @@ def response_generator(user_input, temperature):
     response = get_response(user_input, temperature)
     if not response:
         response = 'Sorry, this request cannot be processed due to token limit. You can report this issue at: https://github.com/karthiksoman/zebra-Llama/issues'
+    response = response.split('End of response')[0].strip()
     for word in response.split():
         yield word + " "
         time.sleep(0.05)
@@ -48,7 +49,7 @@ if prompt := st.chat_input("Chat about EDS"):
         st.markdown(prompt)
 
     # Display assistant response in chat message container
-    with st.spinner("Wait for ~10-15 seconds. Processing... "):
+    with st.spinner("Wait for ~10 seconds. Processing... "):
         with st.chat_message("assistant"):
             response = st.write_stream(response_generator(prompt, temperature))
 
