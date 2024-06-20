@@ -19,6 +19,8 @@ def response_generator(user_input, temperature):
     response = get_response(user_input, temperature)
     if not response:
         response = 'Sorry, this request cannot be processed due to token limit. You can report this issue at: https://github.com/karthiksoman/zebra-Llama/issues'
+    if not isinstance(response.json(), str):
+        response = 'Sorry, encountered a glitch! Can you try it again? If you hit this same error, you can report this issue at: https://github.com/karthiksoman/zebra-Llama/issues'
     # response = response.split('End of response')[0].strip()
     for word in response.split():
         yield word + " "
