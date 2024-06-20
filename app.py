@@ -30,7 +30,7 @@ if "messages" not in st.session_state:
 
 # Add a sidebar for the temperature slider
 with st.sidebar:
-    temperature = st.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
+    temperature = st.slider("Temperature (Sets response creativity: lower value for focused, higher value for diverse.)", 0.0, 1.0, 0.7, 0.1)
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
