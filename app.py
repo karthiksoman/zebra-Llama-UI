@@ -27,7 +27,7 @@ def response_generator(user_input, temperature):
 logo = Image.open("ZebraLLAMA_logo.png")
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
-    st.image(logo, use_column_width=True)
+    st.image(logo, width=200)
     
 st.title("Chat EDS with Zebra Llama")
 
