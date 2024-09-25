@@ -65,6 +65,15 @@ with st.sidebar:
         "</p>", 
         unsafe_allow_html=True
     )
+    st.markdown("---")
+    st.markdown(
+        "<p style='font-size: small; color: gray;'>"
+        "<strong>Important Note:</strong> Due to an issue with the Hugging Face inference endpoint, "
+        "the current responses are generated using the pre-trained Llama 3-8b model. However, these responses still incorporate EDS-specific information from the knowledge base that we created."
+        "Once the issue is resolved, we will replace the pre-trained model with the EDS fine-tuned Llama model"
+        "</p>", 
+        unsafe_allow_html=True
+    )
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
