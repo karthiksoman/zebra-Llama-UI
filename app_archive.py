@@ -2,35 +2,29 @@ import streamlit as st
 import requests
 import time
 from PIL import Image
-from inference import inference
-import json
 
-
+def get_response(user_input, temperature):
+    url = "https://jfn1so7p7a.execute-api.us-west-1.amazonaws.com/Prod/inference"
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = {
+        "text": user_input,
+        "temperature": temperature
+    }
+    response = requests.post(url, headers=headers, json=data)
+    return response.json()
 
 def response_generator(user_input, temperature):
-    try:
-        # Call the inference function
-        inference_response = inference(user_input, temperature)
-        
-        # Remove surrounding quotes and parse as a string
-        if inference_response.startswith('"') and inference_response.endswith('"'):
-            inference_response = inference_response[1:-1]
-        
-        # Replace escaped characters
-        response = inference_response.replace('\\n', '\n').replace('\\', '')
-        
-        # Ensure the response is valid text
-        if not response.strip():
-            response = 'Sorry, the response was empty. Please report this issue at: https://github.com/karthiksoman/zebra-Llama/issues'
-    except Exception as e:
-        response = f"Sorry, an unexpected error occurred: {str(e)}. You can report this issue at: https://github.com/karthiksoman/zebra-Llama/issues"
-
-    # Stream the response word by word
+    response = get_response(user_input, temperature)
+    if not response:
+        response = 'Sorry, this request cannot be processed due to token limit. You can report this issue at: https://github.com/karthiksoman/zebra-Llama/issues'
+    if not isinstance(response, str):
+        response = 'Sorry, encountered a glitch! Can you try it again? If you hit this same error, you can report this issue at: https://github.com/karthiksoman/zebra-Llama/issues'
+    # response = response.split('End of response')[0].strip()
     for word in response.split():
         yield word + " "
         time.sleep(0.05)
-
-
 
 logo = Image.open("ZebraLLAMA_logo.png")
 
